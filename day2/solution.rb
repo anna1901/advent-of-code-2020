@@ -4,6 +4,8 @@ end
 
 valid_passwords = 0
 
+# Part 1
+
 password_list.each do |password|
 	min = password[0][/\d+/].to_i
 	max = password[0][/\d+$/].to_i
@@ -13,6 +15,20 @@ password_list.each do |password|
 	end
 end
 
-puts valid_passwords
+# Part 2
 
-# puts input.inspect
+valid_passwords = 0
+
+password_list.each do |password|
+	first_position = password[0][/\d+/].to_i
+	second_position = password[0][/\d+$/].to_i
+	
+	num = 0
+
+	num +=1 if password[2][first_position-1] == password[1]
+	num +=1 if password[2][second_position-1] == password[1]
+
+	valid_passwords +=1 if num == 1
+end
+
+puts valid_passwords
